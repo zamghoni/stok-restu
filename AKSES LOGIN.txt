@@ -1,0 +1,11 @@
+Login admin
+username : admin
+password : admin
+
+Login staff
+username : staff
+password : staff
+
+Login manager
+username : manager
+password : manager
