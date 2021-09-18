@@ -86,7 +86,13 @@
 
           <div class="section-body">
             <h2 class="section-title">Tambah Supplier</h2>
-
+            <?php
+            $kode_supplier = $data['id_supplier'];
+            $urutan = (int) substr($kode_supplier,-5);
+            $urutan++;
+            $kode_supplier=sprintf("%05s", $urutan);
+            $kode="SPL-";
+            ?>
             <div class="row">
               <div class="col-12 col-md-6 col-lg-6">
                 <div class="card">
@@ -94,7 +100,7 @@
                     <form role="form" action="<?php echo base_url('Supplier/insert')?>" method="post">
                       <div class="form-group">
                         <label>Kode Supplier *</label>
-                        <input type="text" class="form-control" id="kode" name="kode" autofocus>
+                        <input type="text" class="form-control" id="kode" name="kode" readonly value="<?=$kode.$kode_supplier?>">
                         <p><?php echo form_error('kode'); ?></p>
                       </div>
                       <div class="form-group">

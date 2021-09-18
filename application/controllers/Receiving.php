@@ -2,11 +2,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * 
+ *
  */
 class Receiving extends CI_Controller
 {
-	
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -44,6 +44,7 @@ class Receiving extends CI_Controller
 		if ($this->form_validation->run() === FALSE) {
 			$data['supplier'] = $this->m_receiving->getSupplier();
 			$data['barang'] = $this->m_receiving->getBarang();
+			$data['data'] = $this->m_receiving->no_transaksi()->row_array();
 			$this->load->view('modreceive/insert_receiving', $data);
 		} else {
 			$data['id_brgmasuk'] = $this->input->post('kode');

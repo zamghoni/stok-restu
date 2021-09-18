@@ -2,11 +2,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * 
+ *
  */
 class Barang extends CI_Controller
 {
-	
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -42,6 +42,7 @@ class Barang extends CI_Controller
 		if ($this->form_validation->run() === FALSE) {
 			$data['satuan'] = $this->m_barang->getSatuan();
 			$data['jenis'] = $this->m_barang->getJenis();
+			$data['data'] = $this->m_barang->kode_barang()->row_array();
 			$this->load->view('modbarang/insert_barang', $data);
 		} else {
 			$data['id_barang'] = $this->input->post('kode');

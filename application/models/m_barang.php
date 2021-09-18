@@ -2,11 +2,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * 
+ *
  */
 class M_barang extends CI_Model
 {
-	
+
 	Private $table = 'barang';
 	private $primary_key = 'id_barang';
 
@@ -56,4 +56,13 @@ class M_barang extends CI_Model
 	{
 		$this->db->delete($this->table, array($this->primary_key => $id));
 	}
+
+	public function kode_barang()
+  {
+    $this->db->select_max('id_barang');
+    $this->db->from('barang');
+    $query = $this->db->get();
+    return $query;
+  }
+
 }

@@ -91,7 +91,13 @@
 
           <div class="section-body">
             <h2 class="section-title">Tambah Barang</h2>
-
+            <?php
+            $kode_barang = $data['id_barang'];
+            $urutan = (int) substr($kode_barang,-5);
+            $urutan++;
+            $kode_barang=sprintf("%05s", $urutan);
+            $kode="BRG-";
+            ?>
             <div class="row">
               <div class="col-12 col-md-6 col-lg-6">
                 <div class="card">
@@ -99,7 +105,7 @@
                     <form role="form" action="<?php echo base_url('Barang/insert')?>" method="post">
                       <div class="form-group">
                         <label>Kode Barang *</label>
-                        <input type="text" class="form-control" id="kode" name="kode" autofocus>
+                        <input type="text" class="form-control" id="kode" name="kode" readonly value="<?=$kode.$kode_barang?>">
                         <p><?php echo form_error('kode'); ?></p>
                       </div>
                       <div class="form-group">

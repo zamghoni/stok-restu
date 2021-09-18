@@ -91,7 +91,13 @@
 
           <div class="section-body">
             <h2 class="section-title">Tambah Delivery</h2>
-
+            <?php
+            $no_transaksi = $data['id_brgkeluar'];
+            $urutan = (int) substr($no_transaksi,-5);
+            $urutan++;
+            $no_transaksi=sprintf("%05s", $urutan);
+            $kode="DTAM-";
+            ?>
             <div class="row">
               <div class="col-12 col-md-6 col-lg-6">
                 <div class="card">
@@ -99,7 +105,7 @@
                     <form role="form" action="<?php echo base_url('Delivery/insert')?>" method="post">
                       <div class="form-group">
                         <label>No. Transaksi *</label>
-                        <input type="text" class="form-control" id="kode" name="kode" autofocus>
+                        <input type="text" class="form-control" id="kode" name="kode" readonly value="<?=$kode.$no_transaksi?>">
                         <p><?php echo form_error('kode'); ?></p>
                       </div>
                       <div class="form-group">

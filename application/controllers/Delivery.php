@@ -2,11 +2,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * 
+ *
  */
 class Delivery extends CI_Controller
 {
-	
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -41,6 +41,7 @@ class Delivery extends CI_Controller
 
 		if ($this->form_validation->run() === FALSE) {
 			$data['barang'] = $this->m_delivery->getBarang();
+			$data['data'] = $this->m_delivery->no_transaksi()->row_array();
 			$this->load->view('moddelive/insert_delivery', $data);
 		} else {
 			$data['id_brgkeluar'] = $this->input->post('kode');

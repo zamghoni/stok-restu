@@ -2,11 +2,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * 
+ *
  */
 class Supplier extends CI_Controller
 {
-	
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -40,7 +40,8 @@ class Supplier extends CI_Controller
 		$this->form_validation->set_rules($this->rules());
 
 		if ($this->form_validation->run() === FALSE) {
-			$this->load->view('modsupplier/insert_supplier');
+			$data['data'] = $this->m_supplier->kode_supplier()->row_array();
+			$this->load->view('modsupplier/insert_supplier',$data);
 		} else {
 			$data['id_supplier'] = $this->input->post('kode');
 			$data['nm_supplier'] = $this->input->post('nama');

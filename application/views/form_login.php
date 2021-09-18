@@ -8,6 +8,7 @@
   <!-- General CSS Files -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
   <!-- CSS Libraries -->
   <link rel="stylesheet" href="<?php echo base_url('node_modules/')?>bootstrap-social/bootstrap-social.css">
@@ -17,37 +18,44 @@
   <link rel="stylesheet" href="<?php echo base_url('assets/css/')?>components.css">
 </head>
 
-<body>
+<body <?php if ($this->session->has_userdata('success')) { ?> onload="success()" <?php } ?>
+  <?php if ($this->session->has_userdata('error')) { ?> onload="error()" <?php } ?>
+  >
   <div id="app">
     <section class="section">
       <div class="container mt-5">
         <div class="row">
           <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
-            <div class="card card-primary">
-              <div class="login-brand">
+            <div class="card card-primary" style="margin-top:55px">
+              <?php $this->view('message'); ?>
+              <div class="login-brand" style="margin-bottom:-25px">
                 <h6 style="color: #6777ef;">Stok Gudang</h6>
                 <h5>Restu Jaya Motor</h5>
               </div>
-              <div class="card-header"><h4>Login</h4></div>
-
+              <div class="card-header mt-1" style="margin-bottom:-30px"><h4>Login</h4></div>
               <div class="card-body">
                 <form method="POST" action="<?php echo base_url('Login/cek_login')?>">
                   <div class="form-group">
                     <label for="username">Username</label>
-                    <input id="username" type="text" class="form-control" name="username" autofocus>
+                    <input id="username" type="text" class="form-control" name="username" autofocus required oninvalid="this.setCustomValidity('Masukkan username disini')" oninput="setCustomValidity('')" autocomplete="off">
                     <p text-danger><?php echo form_error('username');?></p>
                   </div>
 
                   <div class="form-group">
                     <div class="d-block">
                     	<label for="password" class="control-label">Password</label>
+                      <div class="float-right">
+                        <a href="<?=site_url('Login/forget_password')?>" class="text-small">
+                          Lupa Password?
+                        </a>
+                      </div>
                     </div>
-                    <input id="password" type="password" class="form-control" name="password">
+                    <input id="password" type="password" class="form-control" name="password" required oninvalid="this.setCustomValidity('Masukkan password disini')" oninput="setCustomValidity('')" autocomplete="off">
                     <p text-danger><?php echo form_error('password');?></p>
                   </div>
 
                   <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4"> <i class="fas fa-sign-in-alt"></i>
                       Login
                     </button>
                   </div>
